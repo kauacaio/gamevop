@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ClickAQuI</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Fonte moderna -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+
+<style>
+    /* Estilos gerais */
+    body {
+        font-family: 'Orbitron', sans-serif;
+        text-align: center;
+        background-color: #1a1a1a; /* Fundo escuro para destacar o neon */
+        margin: 0;
+        padding: 0;
+    }
+
+    h1 {
+        color: #00ffcc; /* Neon Verde */
+        font-size: 3rem;
+        padding: 20px;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        text-shadow: 0 0 10px #00ffcc, 0 0 20px #00ffcc; /* Efeito de brilho */
+    }
+
+    #game-info {
+        font-size: 18px;
+        margin-bottom: 20px;
+        font-weight: 500;
+        color: #fff;
+        text-shadow: 0 0 5px #00ffcc;
+    }
+
+    #gameArea {
+        position: relative;
+        width: 600px;
+        height: 400px;
+        margin: 20px auto;
+        background-color: #222;
+        border: 2px solid #00ffcc;
+        overflow: hidden;
+        border-radius: 10px;
+        box-shadow: 0 0 15px #00ffcc, 0 0 25px #00ffcc; /* Brilho Neon */
+    }
+
+    .target {
+        position: absolute;
+        width: 50px;
+        height: 50px;
+        cursor: pointer;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .target.triangle {
+        width: 0;
+        height: 0;
+        border-left: 25px solid transparent;
+        border-right: 25px solid transparent;
+        border-bottom: 50px solid #ffcc00; /* Amarelo Neon */
+        box-shadow: 0 0 10px #ffcc00;
+    }
+
+    .target.square {
+        background-color: #00ff00; /* Verde Neon */
+        box-shadow: 0 0 10px #00ff00;
+    }
+
+    .target.ball {
+        border-radius: 50%;
+        background-color: #ff00ff; /* Rosa Neon */
+        box-shadow: 0 0 10px #ff00ff;
+    }
+
+    #level, #timer, #score {
+        font-size: 20px;
+        font-weight: bold;
+        color: #fff;
+        text-shadow: 0 0 5px #00ffcc;
+    }
+
+    #level-up {
+        font-size: 24px;
+        background-color: #28a745;
+        color: white;
+        padding: 20px;
+        border-radius: 10px;
+        display: none;
+        animation: fadeIn 1s ease;
+        box-shadow: 0 0 15px #28a745; /* Neon verde claro */
+    }
+
+    #game-over {
+        font-size: 24px;
+        background-color: #dc3545;
+        color: white;
+        padding: 20px;
+        border-radius: 10px;
+        display: none;
+        animation: fadeIn 1s ease;
+        box-shadow: 0 0 15px #dc3545; /* Neon vermelho */
+    }
+
+    button {
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+        background-color: #00ffcc; /* Neon Verde */
+        color: #1a1a1a;
+        border: none;
+        border-radius: 5px;
+        margin-top: 20px;
+        transition: background-color 0.3s ease, transform 0.3s ease;
+        box-shadow: 0 0 10px #00ffcc;
+    }
+
+    button:hover {
+        background-color: #009c99;
+        transform: scale(1.1);
+        box-shadow: 0 0 20px #00ffcc;
+    }
+
+    .hidden {
+        display: none;
+    }
+
+    /* Animação de fade-in */
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+</style>
+
+<body>
+    <h1>ClickAQuI</h1>
+    <div id="game-info">
+        <p>Pontuação: <span id="score">0</span></p>
+        <p>Tempo restante: <span id="timer">60</span></p>
+        <p>Nível: <span id="level">1</span></p>
+    </div>
+    <div id="gameArea">
+        <!-- Área onde os alvos aparecerão -->
+    </div>
+    <div id="level-up" class="hidden">
+        <p>Você Ganhou o Nível!</p>
+    </div>
+    <div id="game-over" class="hidden">
+        <p>Jogo Acabado!</p>
+        <p>Você chegou até o Nível: <span id="final-level"></span></p>
+        <p>Sua pontuação final é: <span id="final-score"></span></p>
+        <button id="restart-button">Jogar Novamente</button>
+    </div>
+    <script src="alvo.js"></script>
+</body>
+</html>
